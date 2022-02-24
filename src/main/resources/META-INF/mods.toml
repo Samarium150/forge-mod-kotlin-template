@@ -1,7 +1,7 @@
 # Make sure this is set to "kotlinforforge"
 modLoader = "kotlinforforge"
 # Make sure this is set to the appropriate version range
-loaderVersion = "[2,)" # Require at least 1.14.x
+loaderVersion = "[3,)" # Require at least 1.14.x
 # License is REQUIRED after 1.16
 license = "LGPL-2.1-or-later"
 
@@ -16,12 +16,12 @@ description = '''
 [[dependencies.example_mod]]
 modId = "forge"
 mandatory = true
-versionRange = "[37,)"
+versionRange = "[39,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.example_mod]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.17.1]"
+versionRange = "[1.18.1]"
 ordering = "NONE"
 side = "BOTH"

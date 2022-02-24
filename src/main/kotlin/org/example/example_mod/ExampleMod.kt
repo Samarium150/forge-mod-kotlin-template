@@ -2,7 +2,7 @@ package org.example.example_mod
 
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
-import net.minecraftforge.fmlserverevents.FMLServerAboutToStartEvent
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
@@ -22,7 +22,7 @@ object ExampleMod {
         LOGGER.info("client setup")
     }
 
-    private fun onServerAboutToStart(event: FMLServerAboutToStartEvent) {
+    private fun onServerAboutToStart(event: FMLDedicatedServerSetupEvent) {
         LOGGER.info("server about to start")
     }
 

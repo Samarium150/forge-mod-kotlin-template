@@ -19,26 +19,25 @@ plugins {
     kotlin("plugin.serialization") version "1.6.10"
     java
 }
-apply(plugin="net.minecraftforge.gradle")
+apply(plugin = "net.minecraftforge.gradle")
+apply(from = "https://raw.githubusercontent.com/thedarkcolour/KotlinForForge/site/thedarkcolour/kotlinforforge/gradle/kff-3.1.0.gradle")
 
 group = "org.example"
 version = "1.0.0"
 
 repositories {
     mavenCentral()
-    maven("https://thedarkcolour.github.io/KotlinForForge/")
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:1.17.1-37.1.1")
-    implementation("thedarkcolour:kotlinforforge:2.0.1")
+    "minecraft"("net.minecraftforge:forge:1.18.1-39.0.85")
 }
 
 val Project.minecraft: net.minecraftforge.gradle.common.util.MinecraftExtension
     get() = extensions.getByType()
 
 minecraft.let {
-    it.mappings("official", "1.17.1")
+    it.mappings("official", "1.18.1")
     it.runs {
         create("client") {
             workingDirectory(project.file("run"))
@@ -62,7 +61,7 @@ minecraft.let {
 }
 
 tasks {
-    val javaVersion = JavaVersion.VERSION_16
+    val javaVersion = JavaVersion.VERSION_17
     withType<JavaCompile> {
         options.encoding = "UTF-8"
         sourceCompatibility = javaVersion.toString()
