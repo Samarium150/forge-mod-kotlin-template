@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -61,18 +62,43 @@ minecraft.let {
 }
 
 tasks {
+    val javaVersion = JavaVersion.VERSION_1_8
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        sourceCompatibility = javaVersion.toString()
+        targetCompatibility = javaVersion.toString()
+        if (JavaVersion.current().isJava9Compatible) {
+            options.release.set(javaVersion.toString().toInt())
+        }
+    }
+    withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = javaVersion.toString()
+        }
+        sourceCompatibility = javaVersion.toString()
+        targetCompatibility = javaVersion.toString()
+    }
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+    }
     withType<Jar> {
         archiveBaseName.set("example-mod")
         manifest {
-            attributes(mapOf(
-                "Specification-Title" to project.name,
-                "Specification-Vendor" to "author",
-                "Specification-Version" to "1",
-                "Implementation-Title" to project.name,
-                "Implementation-Vendor" to "author",
-                "Implementation-Version" to project.version,
-                "Implementation-Timestamp" to SimpleDateFormat("yyyy-MM-dd").format(Date())
-            ))
+            attributes(
+                mapOf(
+                    "Specification-Title" to project.name,
+                    "Specification-Vendor" to "author",
+                    "Specification-Version" to "1",
+                    "Implementation-Title" to project.name,
+                    "Implementation-Vendor" to "author",
+                    "Implementation-Version" to project.version,
+                    "Implementation-Timestamp" to SimpleDateFormat("yyyy-MM-dd").format(Date())
+                )
+            )
         }
         finalizedBy("reobfJar")
     }
