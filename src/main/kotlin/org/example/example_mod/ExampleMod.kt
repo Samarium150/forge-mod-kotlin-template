@@ -2,7 +2,7 @@ package org.example.example_mod
 
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent
+import net.minecraftforge.fmlserverevents.FMLServerAboutToStartEvent
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS

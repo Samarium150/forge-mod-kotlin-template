@@ -30,15 +30,15 @@ repositories {
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:1.16.5-36.2.28")
-    implementation("thedarkcolour:kotlinforforge:1.16.0")
+    "minecraft"("net.minecraftforge:forge:1.17.1-37.1.1")
+    implementation("thedarkcolour:kotlinforforge:2.0.1")
 }
 
 val Project.minecraft: net.minecraftforge.gradle.common.util.MinecraftExtension
     get() = extensions.getByType()
 
 minecraft.let {
-    it.mappings("official", "1.16.5")
+    it.mappings("official", "1.17.1")
     it.runs {
         create("client") {
             workingDirectory(project.file("run"))
@@ -62,7 +62,7 @@ minecraft.let {
 }
 
 tasks {
-    val javaVersion = JavaVersion.VERSION_1_8
+    val javaVersion = JavaVersion.VERSION_16
     withType<JavaCompile> {
         options.encoding = "UTF-8"
         sourceCompatibility = javaVersion.toString()
@@ -80,7 +80,7 @@ tasks {
     }
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(8))
+            languageVersion.set(JavaLanguageVersion.of(javaVersion.toString()))
         }
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
