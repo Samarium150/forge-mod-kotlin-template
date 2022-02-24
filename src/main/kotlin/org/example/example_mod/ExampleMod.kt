@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import thedarkcolour.kotlinforforge.forge.runForDist
 
 @Mod(ExampleMod.MOD_ID)
 object ExampleMod {
@@ -14,8 +15,14 @@ object ExampleMod {
     private val LOGGER: Logger = LogManager.getLogger()
     init {
         LOGGER.info("example mod initialization")
-        MOD_BUS.addListener(::onClientSetup)
-        FORGE_BUS.addListener(::onServerAboutToStart)
+        LOGGER.info(runForDist(
+            clientTarget = {
+                MOD_BUS.addListener(::onClientSetup)
+            },
+            serverTarget = {
+                FORGE_BUS.addListener(::onServerAboutToStart)
+            }
+        ))
     }
 
     private fun onClientSetup(event: FMLClientSetupEvent) {
