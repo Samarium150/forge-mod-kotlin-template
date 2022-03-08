@@ -30,14 +30,14 @@ repositories {
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:1.18.1-39.0.85")
+    "minecraft"("net.minecraftforge:forge:1.18.2-40.0.12")
 }
 
 val Project.minecraft: net.minecraftforge.gradle.common.util.MinecraftExtension
     get() = extensions.getByType()
 
 minecraft.let {
-    it.mappings("official", "1.18.1")
+    it.mappings("official", "1.18.2")
     it.runs {
         create("client") {
             workingDirectory(project.file("run"))
