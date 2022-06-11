@@ -2,25 +2,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.text.SimpleDateFormat
 import java.util.Date
 
-buildscript {
-    repositories {
-        maven("https://maven.minecraftforge.net")
-        mavenCentral()
-    }
-    dependencies {
-        classpath("net.minecraftforge.gradle:ForgeGradle:5.1.+") {
-            isChanging = true
-        }
-    }
-}
-
 plugins {
-    kotlin("jvm") version "1.6.10"
-    kotlin("plugin.serialization") version "1.6.10"
     java
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.serialization") version "1.6.21"
+    id("net.minecraftforge.gradle") version "5.1.+"
 }
-apply(plugin = "net.minecraftforge.gradle")
-apply(from = "https://raw.githubusercontent.com/thedarkcolour/KotlinForForge/site/thedarkcolour/kotlinforforge/gradle/kff-3.1.0.gradle")
+apply(from = "https://raw.githubusercontent.com/thedarkcolour/KotlinForForge/site/thedarkcolour/kotlinforforge/gradle/kff-3.5.0.gradle")
 
 group = "org.example"
 version = "1.0.0"
@@ -30,14 +18,14 @@ repositories {
 }
 
 dependencies {
-    "minecraft"("net.minecraftforge:forge:1.18.2-40.0.12")
+    "minecraft"("net.minecraftforge:forge:1.19-41.0.16")
 }
 
 val Project.minecraft: net.minecraftforge.gradle.common.util.MinecraftExtension
     get() = extensions.getByType()
 
 minecraft.let {
-    it.mappings("official", "1.18.2")
+    it.mappings("official", "1.19")
     it.runs {
         create("client") {
             workingDirectory(project.file("run"))
